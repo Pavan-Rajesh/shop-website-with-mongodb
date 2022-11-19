@@ -1,0 +1,6 @@
+body{
+    width:100vw;
+    height:100vh;
+    background: rgb(253,0,255);
+background: linear-gradient(18deg, rgba(253,0,255,1) 2%, rgba(255,209,110,1) 100%);
+}
