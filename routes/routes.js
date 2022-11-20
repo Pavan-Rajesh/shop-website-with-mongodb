@@ -27,15 +27,20 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     const x = req.body;
+
+
+
+
+
     x.forEach(item => {
         itemName = item.name;
         grocery.find({
-            name: itemName
+            productName: itemName
         }, 'quantity', function (err, docs) {
 
             if (err) {
                 console.log(err)
-            } else if (docs[0].quantity < parseInt(x[0].quantity)) {
+            } else if (docs[0].quantity < parseInt(item.quantity)) {
                 var data = {
                     success: false,
                     message: "items are low"
@@ -47,19 +52,42 @@ router.post("/", (req, res) => {
                 // responds with status code 200 and data
                 res.status(200).json(data);
             } else {
-                var data = {
-                    success: true,
-                    message: "items are present"
-                };
 
-                // Adds header
-                res.setHeader('Content-Type', 'application/json');
+                grocery.findOneAndUpdate({
+                    productName: item.name
+                }, {
+                    $inc: {
+                        quantity: -item.quantity
+                    }
+                }, function (err, docs) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log(docs);
+                    }
+                })
 
-                // responds with status code 200 and data
-                res.status(200).json(data);
+                // x.forEach(item => {
+                //     grocery.find({
+                //         productName: item.name
+                //     }, function (err, docs) {
+                //         if (err) {
+                //             console.log(err)
+                //         } else {
+                //             console.log(docs);
+                //         }
+                //     })
+                // });
+
+                // // Adds header
+                // res.setHeader('Content-Type', 'application/json');
+
+                // // responds with status code 200 and data
+                // res.status(200).json(data);
             }
 
         })
+
     });
 
 })
