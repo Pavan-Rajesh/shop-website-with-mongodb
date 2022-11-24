@@ -91,12 +91,13 @@ function calcbill(e) {
                     "quantity": `${element.quantity}`,
                     "price": `${element.quantity*element.price}`
                 })
-                console.log(`selected quaantiy of the ${element.name} is ${element.quantity} and the total price is ${element.quantity*element.price}`);
+                // console.log(`selected quaantiy of the ${element.name} is ${element.quantity} and the total price is ${element.quantity*element.price}`);
             }
         })
     }
     const form = e.currentTarget;
     const url = form.action;
+    // console.log(url);
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -105,9 +106,16 @@ function calcbill(e) {
         },
         body: JSON.stringify(postdat),
     };
-    console.log(postdat);
-    fetch(url, fetchOptions).then((res) => res.json()).then((data) => console.log(data));
-
+    // console.log(postdat);
+    const visualArea = document.getElementById("billarea");
+    fetch(url, fetchOptions).then((res) => res.json()).then((data) => {
+        const x = data.items;
+        var billHTML = '<div>itemname-------item quantity---------itemprice</div>';
+        x.forEach((item) => {
+            billHTML = billHTML + `<div>${item.name}------${item.quantity}------${item.price}</div>`;
+        })
+        visualArea.insertAdjacentHTML("afterbegin", billHTML);
+    });
 }
 
 

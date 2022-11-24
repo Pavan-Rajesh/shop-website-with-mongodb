@@ -25,13 +25,19 @@ router.get("/", (req, res) => {
     res.render("homepage");
 })
 
+router.get("/bill", (req, res) => {
+    res.render("bill");
+})
+
+
+router.post('/bill', (req, res) => {
+    console.log(req.body)
+})
+
+var lesit = 1;
+
 router.post("/", (req, res) => {
     const x = req.body;
-
-
-
-
-
     x.forEach(item => {
         itemName = item.name;
         grocery.find({
@@ -41,16 +47,8 @@ router.post("/", (req, res) => {
             if (err) {
                 console.log(err)
             } else if (docs[0].quantity < parseInt(item.quantity)) {
-                var data = {
-                    success: false,
-                    message: "items are low"
-                };
+                lesit = -1;
 
-                // Adds header
-                res.setHeader('custom_header_name', 'abcde');
-
-                // responds with status code 200 and data
-                res.status(200).json(data);
             } else {
 
                 grocery.findOneAndUpdate({
@@ -63,32 +61,40 @@ router.post("/", (req, res) => {
                     if (err) {
                         console.log(err)
                     } else {
-                        console.log(docs);
+                        // console.log(docs);
                     }
                 })
 
-                // x.forEach(item => {
-                //     grocery.find({
-                //         productName: item.name
-                //     }, function (err, docs) {
-                //         if (err) {
-                //             console.log(err)
-                //         } else {
-                //             console.log(docs);
-                //         }
-                //     })
-                // });
 
-                // // Adds header
-                // res.setHeader('Content-Type', 'application/json');
-
-                // // responds with status code 200 and data
-                // res.status(200).json(data);
             }
 
         })
 
     });
+    if (lesit != -1) {
+        var data = {
+            success: true,
+            message: "items are available",
+            items: x
+        };
+
+        // Adds header
+        res.setHeader('Content-Type', 'application/json');
+
+        // responds with status code 200 and data
+        res.status(200).json(data);
+    } else {
+        var data = {
+            success: false,
+            message: "items are low"
+        };
+
+        // Adds header
+        res.setHeader('custom_header_name', 'abcde');
+
+        // responds with status code 200 and data
+        res.status(200).json(data);
+    }
 
 })
 

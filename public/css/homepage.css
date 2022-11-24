@@ -12,3 +12,9 @@ h3{
     border: 5px solid black;
     padding:40px;
 }
+
+.user-bill{
+    width:700px;
+    height:1000px;
+    background-color:white;
+}
