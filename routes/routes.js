@@ -123,10 +123,13 @@ router.post("/login", (req, res) => {
         if (err) {
             throw err;
         } else if (docs.length == 0) {
-            res.send("login unsuccessful")
+            // res.status(401).send("please register before logging int");
         } else {
             // console.log(docs);
-            res.redirect('/');
+            // res.status(200).send("successfully logged in");
+            res.redirect("/");
+
+
         }
     })
 
@@ -143,9 +146,8 @@ router.get("/register", (req, res) => {
 
 
 router.post("/register", (req, res) => {
-
     const name = req.body.userName;
-    const phnumber = req.body.userphoneNumber
+    const phnumber = req.body.userphoneNumber;
     const email = req.body.userEmail;
     const password = req.body.userPassword;
     const dbdata = {
@@ -154,16 +156,27 @@ router.post("/register", (req, res) => {
         Email: email,
         Password: password
     }
+    // console.log(dbdata);
+    // if (name == "" || phnumber == "" || email == "" || password == "") {
+    //     res.status(400).send("please enter all the details that are mentioned above");
+    // } else {
+    // }
     const user = new newUser(dbdata);
     user.save().then((err, data) => {
         if (err) {
             console.log(err);
-        } else {
-            console.log("registration completed");
         }
+        console.log("registration completed")
+        // res.status(201).send("ok successfully created");
+        res.redirect('/');
+
     })
 
-    res.redirect('/');
+
+
+
+
+
 })
 
 module.exports = router;
