@@ -34,13 +34,28 @@ addbutton.addEventListener('click', function () {
     // console.log(t);
     // console.log(items[2]);
     var html = "";
-    html = `<div class="card"><h3>${items[t].name}</h3>
-        <h4>quantity</h4>
-        <input type="number" value=${items[t].quantity}  readonly id=${items[t].id}>
-        <div class="quantity">
-            <button type="button" onclick="incr('${items[t].id}')">+</button>
-            <button type="button" onclick="dcr('${items[t].id}')">-</button>
-        </div></div>`;
+    // html = `<div class="card"><h3>${items[t].name}</h3>
+    //     <h4>quantity</h4>
+    //     <input type="number" value=${items[t].quantity}  readonly id=${items[t].id}>
+    //     <div class="quantity">
+    //         <button type="button" onclick="incr('${items[t].id}')">+</button>
+    //         <button type="button" onclick="dcr('${items[t].id}')">-</button>
+    //     </div></div>`;
+
+    html = ` <div class="card  border border-5 border-dark">
+    <div class="card-body">
+        <h5 class="card-title">${items[t].name}</h5>
+        <p class="card-text"></p>
+        <div class="d-flex justify-content-evenly align-items-center">
+            <input type="text" class="form-control w-25" value=${items[t].quantity} placeholder="quantity" readonly id=${items[t].id}>
+            <button type="button" onclick="incr('${items[t].id}')"   class="quant">+</button>
+            <button type="button" onclick="dcr('${items[t].id}')" class="quant">-</button>
+        </div>
+    </div>
+</div>`
+
+
+
     cardid.insertAdjacentHTML("afterbegin", html);
 });
 
@@ -83,7 +98,8 @@ function calcbill(e) {
     // console.log(childs[0]);
     const postdat = [];
     for (let i = 0; i < num; i++) {
-        const x = childs[i].children[2].getAttribute("id");
+        const x = childs[i].children[0].children[2].children[0].getAttribute("id");
+        // const x = childs[i].children[2].getAttribute("id");
         items.forEach(element => {
             if (x == element.id) {
                 postdat.push({
@@ -110,11 +126,14 @@ function calcbill(e) {
     const visualArea = document.getElementById("billarea");
     fetch(url, fetchOptions).then((res) => res.json()).then((data) => {
         const x = data.items;
-        var billHTML = '<div>itemname-------item quantity---------itemprice</div>';
+        var table = '<table><tr><th>Item Name</th><th>Item Quantity</th><th>Item price</th></tr>'
+        // var billHTML = '<div>itemname-------item quantity---------itemprice</div>';
         x.forEach((item) => {
-            billHTML = billHTML + `<div>${item.name}------${item.quantity}------${item.price}</div>`;
+            // billHTML = billHTML + `<div>${item.name}------${item.quantity}------${item.price}</div>`;
+            table = table + `<tr><td>${item.name}</td><td>${item.quantity}</td><td>${item.price}</td></tr>`;
         })
-        visualArea.insertAdjacentHTML("afterbegin", billHTML);
+        table = table + '</table>'
+        visualArea.insertAdjacentHTML("afterbegin", table);
     });
 }
 

@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0;
     
 }
@@ -17,4 +17,62 @@ h3{
     width:700px;
     height:1000px;
     background-color:white;
+} */
+
+.selected-items{
+    margin:50px;
+}
+.interest{
+    border-radius: 5px;
+    border:none;
+    padding:10px;
+    text-align: center;
+}
+
+body{
+    background: repeating-linear-gradient(
+        45deg,
+        #E5D9B6,
+        #E5D9B6 10px,
+        #5F8D4E 9px,
+        #E5D9B6 11px
+      );
+      background-repeat: no-repeat;
+    min-height:100vh;
+}
+
+.card{
+    margin:10px;
+}
+.card-body{
+    background-color:#5F8D4E;
+}
+.card-title{
+    color:white;
+}
+.quant{
+    width:30px;
+    height:30px;
+    font-weight:bold;
+    border-radius:10px;
+    background:#E5D9B6;
+}
+.quant:hover{
+    background:#ccb543;
+}
+
+#add{
+    border-radius: 5px;
+    background-color: yellowgreen;
+    color: white;
+}
+
+#calc{
+    border-radius: 5px;;
+    background-color: #E5D9B6;
+    margin-top:20px
+}
+
+tr,th,table{
+    border:1px solid #5F8D4E;
 }
