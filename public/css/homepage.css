@@ -61,6 +61,18 @@ body{
     background:#ccb543;
 }
 
+.caution{
+    width:200px;
+    height:100px;
+    background-color: #E5D9B6;
+    border: 2px solid #5F8D4E;
+    color:black;
+    font-weight: 400 ;
+    border-radius: 10px;
+    margin-top:50px;
+}
+
+
 #add{
     border-radius: 5px;
     background-color: yellowgreen;
@@ -75,4 +87,12 @@ body{
 
 tr,th,table{
     border:1px solid #5F8D4E;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }

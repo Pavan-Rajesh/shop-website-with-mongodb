@@ -5,7 +5,7 @@ const items = [{
         quantity: 0
     }, {
         id: "puls1",
-        name: "pulse",
+        name: "pulses",
         price: 50,
         quantity: 0
     },
@@ -22,6 +22,7 @@ const addbutton = document.getElementById("add");
 const arr = [];
 addbutton.addEventListener('click', function () {
     const iname = document.getElementById("name").value;
+    console.log(iname);
     const cardid = document.getElementById("bill");
     // console.log(iname);
     for (var i = 0; i < items.length; i++) {

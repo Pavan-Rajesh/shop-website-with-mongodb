@@ -123,7 +123,7 @@ router.post("/login", (req, res) => {
         if (err) {
             throw err;
         } else if (docs.length == 0) {
-            // res.status(401).send("please register before logging int");
+            res.render("invalid");
         } else {
             // console.log(docs);
             // res.status(200).send("successfully logged in");

@@ -17,6 +17,16 @@ body {
 }
 
 
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+
 textarea:focus,
 textarea.form-control:focus,
 input.form-control:focus,
