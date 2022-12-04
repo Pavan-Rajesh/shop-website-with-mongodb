@@ -44,11 +44,13 @@ router.post("/", (req, res) => {
             productName: itemName
         }, 'quantity', function (err, docs) {
 
+
+            console.log(docs);
+
             if (err) {
                 console.log(err)
             } else if (docs[0].quantity < parseInt(item.quantity)) {
                 lesit = -1;
-
             } else {
 
                 grocery.findOneAndUpdate({

@@ -11,7 +11,7 @@ const items = [{
     },
     {
         id: "seneg1",
-        name: "senegs",
+        name: "moongdal",
         price: 50,
         quantity: 0
     }
