@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGODBURI, {
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const grocery = require('./models/products.js');
+// const grocery = require('./models/products.js');
 
 
 app.set('view engine', 'ejs');
