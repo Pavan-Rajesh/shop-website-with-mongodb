@@ -10,7 +10,7 @@ router.get("/checkout", (req, res) => {
 })
 
 
-router.get("/", (req, res) => {
+router.get("/homepage", (req, res) => {
     // const pro = {
     //     productName: "dal",
     //     quantity: 43
@@ -36,7 +36,7 @@ router.post('/bill', (req, res) => {
 
 var lesit = 1;
 
-router.post("/", (req, res) => {
+router.post("/homepage", (req, res) => {
     const x = req.body;
     x.forEach(item => {
         itemName = item.name;
@@ -105,11 +105,11 @@ router.post("/", (req, res) => {
 
 // login page
 
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
     res.render("login");
 })
 
-router.post("/login", (req, res) => {
+router.post("/", (req, res) => {
 
     console.log(req.body.userPassword);
     console.log(req.body.userEmail);
@@ -129,7 +129,7 @@ router.post("/login", (req, res) => {
         } else {
             // console.log(docs);
             // res.status(200).send("successfully logged in");
-            res.redirect("/");
+            res.redirect("/homepage");
 
 
         }
