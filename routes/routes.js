@@ -22,7 +22,26 @@ router.get("/homepage", (req, res) => {
     //     }
     //     console.log("successfully saved")
     // })
-    res.render("homepage");
+
+
+    grocery.find({
+
+    }, function (err, items) {
+        if (err) throw err;
+        res.render("homepage", {
+            i1: items[0].quantity,
+            i2: items[1].quantity,
+            i3: items[2].quantity
+
+        });
+    })
+
+
+
+
+
+
+
 })
 
 router.get("/bill", (req, res) => {
@@ -97,6 +116,7 @@ router.post("/homepage", (req, res) => {
         // responds with status code 200 and data
         res.status(200).json(data);
     }
+
 
 })
 
